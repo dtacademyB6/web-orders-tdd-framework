@@ -1,4 +1,4 @@
-package utilitities;
+package utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 public class Driver {
-    /* utility class that initializes the WebDriver and uses singleton pattern to prevent multiple initializations
+    /* utility class that initializes and quits the WebDriver and uses singleton pattern to prevent multiple initializations or quitting
       of the WebDriver
      */
 
