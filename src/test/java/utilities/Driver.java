@@ -3,8 +3,11 @@ package utilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
 
 public class Driver {
@@ -20,7 +23,12 @@ public class Driver {
     public static WebDriver getDriver(){
         if(driver == null){
 
-            String browser = ConfigReader.getProperty("browser");
+            String browser =  System.getProperty("browser");
+            if(browser == null){
+                browser = ConfigReader.getProperty("browser");
+            }
+
+
 
             switch (browser){
                 case "chrome":
@@ -37,6 +45,24 @@ public class Driver {
                     break;
                 case "safari":
                     driver = new SafariDriver();
+                    break;
+                case "headlessChrome":
+                    WebDriverManager.chromedriver().setup();
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.addArguments("--headless");
+                    driver = new ChromeDriver(chromeOptions);
+                    break;
+                case "headlessFirefox":
+                    WebDriverManager.firefoxdriver().setup();
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.addArguments("--headless");
+                    driver = new FirefoxDriver(firefoxOptions);
+                    break;
+                case "headlessEdge":
+                    WebDriverManager.edgedriver().setup();
+                    EdgeOptions edgeOptions = new EdgeOptions();
+                    edgeOptions.addArguments("--headless");
+                    driver = new EdgeDriver(edgeOptions);
                     break;
                 default:
                     System.out.println("Invalid browser");

@@ -11,5 +11,49 @@ PageFactory design pattern ->      This pattern uses @FindBy annotations to loca
                                    We also can use @FindBys to create chained matches and @FindAll to match multiple webelements on the page
 
 
- Maven plugin vs dependency ->     Dependency -> collection of libraries(jar files) that is used for specific purpose
-                                   Plugin -> Maven tool that executes specific task. Maven Surefire plugin executes tests
+ Maven plugin vs dependency ->     Dependency -> collection of libraries(jar files) that is used for specific purpose. Example, Faker dependency for generating mock data
+                                   Plugin -> Maven related tool that executes specific task. Example: Maven Surefire plugin executes tests. Maven is a collection of multiple of these plugins
+
+
+ Maven Lifecycle           ->      Lifecycle -> Executable maven command that performs specific task. Each command executes its previous commands first. The order of execution is ->   clean
+                                                                                                                                                                                        validate
+                                                                                                                                                                                        compile
+                                                                                                                                                                                        test
+                                                                                                                                                                                        package
+                                                                                                                                                                                        verify
+                                                                                                                                                                                        install
+                                                                                                                                                                                        site
+                                                                                                                                                                                        deploy
+
+
+ Run tests through CMD       ->      We run the tests through command line with "mvn test" command in our framework using Maven Surefire plugin
+                                     We add a placeholder for the xml file name in Surefire plugin (${file}) and when running tests pass the name of the xml file with -D option
+                                     mvn test -Dfile=regression.xml
+
+ Cross-browser testing       ->    We implement it in our framework by passing the browser type through command line like: mvn test -Dbrowser=chrome
+                                   And we simply execute multiple commands for different browser types
+                                   We can use Windows batch file or Mac shell script file to execute all commands at once
+
+
+  TestNG Selenium TDD Framework components:
+
+  Java - write automation code
+  TestNG - organize, configure, and execute tests
+  Selenium - write code to interact with web browser
+  Webdrivermanager(bonigarcia) - manage browser drivers
+  Maven - define the project structure, manage dependencies, run tests through command line
+  Faker - generate mock data for data driven testing
+
+  Types of tests the framework supports: Smoke, Regression, Functional, UI, Cross Browser, Headless, Parallel, Data-Driven tests
+
+
+  TestNG Selenium TDD Framework Building Steps:
+
+  1. Create a maven project
+  2. Add project related dependencies (Selenium Java, TestNG, WebdriverManager,etc)
+  3. Create the package structure
+  4. Add .gitignore file
+  5. Add the utility classes (SeleniumUtils, Driver, ConfigReader, CSVReader)
+  6. Add the .properties file with the project specific global variables
+  7. Add TestBase class with Before and After annotations
+
