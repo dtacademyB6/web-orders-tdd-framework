@@ -8,3 +8,8 @@ Page Object Model Design Pattern -> A design pattern specific to Selenium based 
 
 PageFactory design pattern ->      This pattern uses @FindBy annotations to locate the elements and makes our Page classes more readable and concise.
                                    We implement it by using PageFactory.initElements() method in a constructor of the page class
+                                   We also can use @FindBys to create chained matches and @FindAll to match multiple webelements on the page
+
+
+ Maven plugin vs dependency ->     Dependency -> collection of libraries(jar files) that is used for specific purpose
+                                   Plugin -> Maven tool that executes specific task. Maven Surefire plugin executes tests
