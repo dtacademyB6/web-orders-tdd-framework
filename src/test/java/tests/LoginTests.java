@@ -15,9 +15,9 @@ public class LoginTests extends TestBase{
 
 
     @Test
-    public void positiveLogin() throws IOException {
+    public void positiveLoginNonPageObjectModel() throws IOException {
 
-        driver.get(ConfigReader.getProperty("url"));
+
         driver.findElement(By.id("ctl00_MainContent_name")).sendKeys(ConfigReader.getProperty("username"));
         driver.findElement(By.name("ctl00$MainContent$password")).sendKeys(ConfigReader.getProperty("password"));
         driver.findElement(By.xpath("//input[@value='Login']")).click();
@@ -29,8 +29,6 @@ public class LoginTests extends TestBase{
     public void positiveLoginWithPageObjectModel() throws IOException {
 
         LoginPage loginPage = new LoginPage();
-
-        driver.get(ConfigReader.getProperty("url"));
         loginPage.username.sendKeys(ConfigReader.getProperty("username"));
         loginPage.password.sendKeys(ConfigReader.getProperty("password"));
         loginPage.loginButton.click();
@@ -49,11 +47,8 @@ public class LoginTests extends TestBase{
     @Test
     public void negativeLoginNoCredentials() throws IOException {
 
-        driver.get(ConfigReader.getProperty("url"));
 
-        driver.findElement(By.id("ctl00_MainContent_username")).sendKeys(
-                "", Keys.TAB,
-                "", Keys.ENTER);
+        new LoginPage().login("", "");
         Assert.assertNotEquals(driver.getTitle(), "Web Orders");
 
 
@@ -63,10 +58,8 @@ public class LoginTests extends TestBase{
     @Test
     public void negativeLoginOmitPass() throws IOException {
 
-        driver.get(ConfigReader.getProperty("url"));
-        driver.findElement(By.id("ctl00_MainContent_username")).sendKeys(
-                ConfigReader.getProperty("username"), Keys.TAB,
-                "", Keys.ENTER);
+
+        new LoginPage().login(ConfigReader.getProperty("username"), "");
         Assert.assertNotEquals(driver.getTitle(), "Web Orders");
 
 

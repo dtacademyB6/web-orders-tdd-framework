@@ -19,7 +19,7 @@ public class AllOrdersTests extends  TestBase{
 
     @Test
     public void verifyCheckAllButton(){
-        driver.get(ConfigReader.getProperty("url"));
+
 
         loginPage = new LoginPage();
 
@@ -35,7 +35,7 @@ public class AllOrdersTests extends  TestBase{
 
     @Test
     public void verifyCheckAllButton2(){
-        driver.get(ConfigReader.getProperty("url"));
+
 
         loginPage = new LoginPage();
 

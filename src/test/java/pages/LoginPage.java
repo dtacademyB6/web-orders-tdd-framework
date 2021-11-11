@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
+import utilities.ConfigReader;
 import utilities.Driver;
 
 public class LoginPage {
@@ -36,6 +37,13 @@ public class LoginPage {
     public void login(String user, String pass){
         username.sendKeys(user);
         password.sendKeys(pass);
+        loginButton.click();
+    }
+
+
+    public void positiveLogin(){
+        username.sendKeys(ConfigReader.getProperty("username"));
+        password.sendKeys(ConfigReader.getProperty("password"));
         loginButton.click();
     }
 
